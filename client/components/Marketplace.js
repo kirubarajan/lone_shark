@@ -1,17 +1,28 @@
 import React from 'react';
 import Tile from './marketplace/Tile.js'
 
+const Tiles = [];
 export default class Marketplace extends React.Component {
-  const Tiles = [];
-  getRequests() {
-    Meteor.call('fetchRequests', arg1, arg2, function(error, result) {
-      for (let i = 0; i < result.length; i++) {
-        Tiles.push(<Tile
-          receiver={result[i].receiver}
-          amount={result[i].amount}
-          message={result[i].message}
-          >)
-      }
+  constructor(props) {
+    super(props);
+    this.callMeteor = this.callMeteor.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('component will mount');
+    this.callMeteor();
+  }
+
+  callMeteor() {
+    Meteor.call('fetchRequests', true, function(error, result) {
+      result.map(function(request) {
+        // Tiles.push(
+        //   <Tile name={request.name}
+        //   amount={request.amount}
+        //   message={request.message}
+        // )
+        console.log(request.name);
+      });
     });
   }
 

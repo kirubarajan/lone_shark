@@ -58,7 +58,7 @@ export default class Register extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            placeholder="username"
+            placeholder="email"
             onChange= {this.handleUsernameChange}
           />
 

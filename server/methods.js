@@ -75,7 +75,7 @@ Meteor.methods({
           return a.rank - b.rank;
       });
 
-      return requests;
+      return [{amount: 1000, name: "Arun", message: "need drugs"}, {amount: 1030, name: "Bob", message: "need cocaine"}];
 
     }
 
