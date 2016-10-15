@@ -1,0 +1,35 @@
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Esteban', serif;
+
+html {
+  font-family: $secondary-font;
+  font-size: 1em;
+}
+
+h1, h2, h3, h4 {
+  font-weight: inherit;
+}
+
+h1 {
+  color: $red;
+  font-family: $primary-font;
+  font-size: 5.063em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 3.375em;
+}
+
+h3 {
+  font-size: 2.25em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+p, a {
+  font-family: $secondary-font;
+}

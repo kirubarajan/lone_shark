@@ -26,24 +26,24 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          onChange= {this.handleUsernameChange}
-        />
+      <div className="login">
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="username"
+            onChange= {this.handleUsernameChange}
+          />
 
-        <input
-          type="password"
-          placeholder="password"
-          onChange= {this.handlePasswordChange}
-        />
+          <input
+            type="password"
+            placeholder="password"
+            onChange= {this.handlePasswordChange}
+          />
 
-        <input
-          type="submit"
-          value="Submit"
-        />
-      </form>
+          <button>Submit</button>
+        </form>
+      </div>
     );
   }
 }

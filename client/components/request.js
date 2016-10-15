@@ -5,9 +5,11 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bitcoin: 0
+      bitcoin: 0,
+      message: ''
     }
     this.handleLoanAmountChange = this.handleLoanAmountChange.bind(this);
+    this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -17,11 +19,19 @@ export default class Login extends React.Component {
     var bitcoinCurrency = cad / (1 / 0.0012);
 
     console.log(bitcoinCurrency);
-    this.setState({bitcoin: bitcoinCurrency})
+    this.setState({bitcoin: bitcoinCurrency});
+  }
+
+  handleMessageChange(e) {
+    console.log(e.target.value);
+    this.setState({message: e.target.value});
   }
 
   handleSubmit(event) {
     event.preventDefault();
+
+    const userId = Meteor.userId();
+    Meteor.call('request', this.state.bitcoin, userId, this.state.message);
   }
 
   render() {
@@ -38,7 +48,7 @@ export default class Login extends React.Component {
         <input
           type="text"
           placeholder="Message to loaner"
-          onChange= {this.handlePasswordChange}
+          onChange= {this.handleMessageChange}
         />
 
         <input

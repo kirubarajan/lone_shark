@@ -35,6 +35,9 @@ export default class Register extends React.Component {
         username: this.state.username,
         password: this.state.password
       });
+
+      const userId = Meteor.userId();
+      Meteor.call('register', userId, this.state.username);
     } else {
       console.log('passwords do not match')
     }
