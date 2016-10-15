@@ -5,27 +5,24 @@ Meteor.methods({
 
   register: function(user, name) {
 
-    // inserts profile shit
-
     return Profiles.insert({user: Meteor.userId(), name: name, score: 0});
 
   },
 
   request: function(amount, receiver, message) {
 
-    // matching algorithm -> sends matched sender a loan request
-
     var date = new Date();
 
-    Requests.insert({message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
+    var creditScore = Profiles.findOne(receiver).score;
 
-    console.log("request");
+    Requests.insert({creditScore: creditScore, message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
+
 
   },
 
   transfer: function(request, decision, sender) {
 
-    // uses blockchain to transfer bi tcoin of given request, or discard request
+    // uses blockchain to transfer bitcoin of given request, or discard request
 
     if (decision == true) {
 
@@ -57,10 +54,40 @@ Meteor.methods({
 
     Requests.update({_id: request}, {score: transactionScore});
 
-    // updates users credit score
-
     var creditScore = Profiles.findOne({user: receiver}).score + transactionScore;
     Profiles.update({user: receiver}, {score: creditScore});
+
+  },
+
+  fetchRequests: function(filterByAmount) {
+
+    var requests = Requests.find({accept: false}).fetch();
+
+    for (var i = 0; i < requests.length; i++) {
+
+      requests[i].rank = requests[i].creditScore / requests[i].time;
+
+    }
+
+    if (filterByAmount == true) {
+
+      requests.sort(function(a, b) {
+          return a.rank - b.rank;
+      });
+
+      return requests;
+
+    }
+
+    else {
+
+      requests.sort(function(a, b) {
+          return (0.2(a.rank) / a.amount) - (0.2(b.rank) / b.amount);
+      });
+
+      return requests;
+
+    }
 
   }
 
