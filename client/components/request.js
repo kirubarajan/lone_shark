@@ -30,6 +30,9 @@ export default class Login extends React.Component {
     event.preventDefault();
 
     const userId = Meteor.userId();
+    console.log(this.state.bitcoin);
+    console.log(userId);
+    console.log(this.state.message);
     Meteor.call('request', this.state.bitcoin, userId, this.state.message);
   }
 

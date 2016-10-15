@@ -13,10 +13,9 @@ Meteor.methods({
 
     var date = new Date();
 
-    var creditScore = Profiles.findOne(receiver).score;
+    var creditScore = Profiles.findOne({user: receiver}).score;
 
     Requests.insert({creditScore: creditScore, message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
-
 
   },
 

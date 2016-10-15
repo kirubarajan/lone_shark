@@ -8,7 +8,7 @@ export default MarketplaceContainer = createContainer(() => {
   if (TilesArray && TilesArray.length) {
     return {
       TilesArray: TilesArray.map(function(tile) {
-        return (<Tile name={tile.name} />);
+        return (<Tile name={tile.name} amount={title.amount} message={title.message}/>);
       })
     }
   }
