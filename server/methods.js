@@ -7,23 +7,25 @@ Meteor.methods({
 
     // inserts profile shit
 
-    return Profiles.insert({user: user, name: name, score: 0});
+    return Profiles.insert({user: Meteor.userId(), name: name, score: 0});
 
   },
 
-  request: function(amount, receiver) {
+  request: function(amount, receiver, message) {
 
     // matching algorithm -> sends matched sender a loan request
 
     var date = new Date();
 
-    Requests.insert({receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
+    Requests.insert({message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
+
+    console.log("request");
 
   },
 
   transfer: function(request, decision, sender) {
 
-    // uses blockchain to transfer bitcoin of given request, or discard request
+    // uses blockchain to transfer bi tcoin of given request, or discard request
 
     if (decision == true) {
 
