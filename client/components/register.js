@@ -1,40 +1,10 @@
 import React from 'react';
 
-<<<<<<< HEAD
-export default class Login extends React.Component {
-=======
 export default class Register extends React.Component {
->>>>>>> front-end
   constructor(props) {
     super(props);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-<<<<<<< HEAD
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  getInitialState() {
-    return { username: '' };
-  }
-
-  handleUsernameChange(e) {
-    this.setState({username: e.target.value });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({password: e.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state.username);
-    console.log(this.state.username);
-
-    Accounts.createUser({
-      username: this.state.username,
-      password: this.state.password
-    });
-=======
     this.handlePasswordConfirmedChange = this.handlePasswordConfirmedChange.bind(this);
     this.passwordMatch = this.passwordMatch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,9 +25,12 @@ export default class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log(this.state.username);
+    console.log(this.state.password);
+    console.log(this.state.confirmedPassword);
 
     if (this.passwordMatch(this.state.password, this.state.confirmedPassword)) {
-      console.log('passwords match');
+      console.log('passwords matchs');
       Accounts.createUser({
         username: this.state.username,
         password: this.state.password
@@ -71,7 +44,6 @@ export default class Register extends React.Component {
     if (password === confirmedPassword) {
       return true;
     }
->>>>>>> front-end
   }
 
   render() {
@@ -90,15 +62,12 @@ export default class Register extends React.Component {
         />
 
         <input
-<<<<<<< HEAD
-=======
           type="text"
           placeholder="confirm password"
           onChange= {this.handlePasswordConfirmedChange}
         />
 
         <input
->>>>>>> front-end
           type="submit"
           value="Submit"
         />
