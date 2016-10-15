@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -19,9 +20,10 @@ export default class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.username);
-    console.log(this.state.username);
+    console.log(this.state.password);
 
     Meteor.loginWithPassword(this.state.username, this.state.password);
+    hashHistory.push('/loggedin')
   }
 
   render() {
@@ -41,7 +43,7 @@ export default class Login extends React.Component {
             onChange= {this.handlePasswordChange}
           />
 
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Register extends React.Component {
     console.log(this.state.confirmedPassword);
 
     if (this.passwordMatch(this.state.password, this.state.confirmedPassword)) {
-      console.log('passwords matchs');
+      console.log('passwords match');
       Accounts.createUser({
         username: this.state.username,
         password: this.state.password
@@ -38,8 +39,9 @@ export default class Register extends React.Component {
 
       const userId = Meteor.userId();
       Meteor.call('register', userId, this.state.username);
+      hashHistory.push('/loggedin')
     } else {
-      console.log('passwords do not match')
+      console.log('passwords do not match');
     }
   }
 
@@ -51,30 +53,30 @@ export default class Register extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          onChange= {this.handleUsernameChange}
-        />
+      <div className="register">
+        <h1>Register</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="username"
+            onChange= {this.handleUsernameChange}
+          />
 
-        <input
-          type="text"
-          placeholder="password"
-          onChange= {this.handlePasswordChange}
-        />
+          <input
+            type="text"
+            placeholder="password"
+            onChange= {this.handlePasswordChange}
+          />
 
-        <input
-          type="text"
-          placeholder="confirm password"
-          onChange= {this.handlePasswordConfirmedChange}
-        />
+          <input
+            type="text"
+            placeholder="confirm password"
+            onChange= {this.handlePasswordConfirmedChange}
+          />
 
-        <input
-          type="submit"
-          value="Submit"
-        />
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Remarkable from 'remarkable';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -36,26 +35,26 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="Amount of money"
-          onChange= {this.handleLoanAmountChange}
-        />
+      <div className="request">
+        <h1>Request a loan</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="number"
+            placeholder="Amount of CAD dollars"
+            onChange= {this.handleLoanAmountChange}
+          />
 
-        <div>Bitcoin: {this.state.bitcoin}</div>
+          <div>Bitcoin: {this.state.bitcoin}</div>
 
-        <input
-          type="text"
-          placeholder="Message to loaner"
-          onChange= {this.handleMessageChange}
-        />
+          <textarea
+            type="text"
+            placeholder="Message to loaner"
+            onChange= {this.handleMessageChange}
+          />
 
-        <input
-          type="submit"
-          value="Submit"
-        />
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }
