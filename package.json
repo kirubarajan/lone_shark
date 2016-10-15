@@ -1,0 +1,13 @@
+{
+  "name": "notsoloneshark",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "blockchain.info": "^2.4.2",
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^15.4.0-rc.4",
+    "react-dom": "^15.4.0-rc.4"
+  }
+}
