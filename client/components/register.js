@@ -59,19 +59,19 @@ export default class Register extends React.Component {
           <input
             type="text"
             placeholder="email"
-            onChange= {this.handleUsernameChange}
+            onChange={this.handleUsernameChange}
           />
 
           <input
             type="text"
             placeholder="password"
-            onChange= {this.handlePasswordChange}
+            onChange={this.handlePasswordChange}
           />
 
           <input
             type="text"
             placeholder="confirm password"
-            onChange= {this.handlePasswordConfirmedChange}
+            onChange={this.handlePasswordConfirmedChange}
           />
 
           <button type="submit">Submit</button>
