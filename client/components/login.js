@@ -8,16 +8,12 @@ export default class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getInitialState() {
-    return { username: '' };
-  }
-
   handleUsernameChange(e) {
-    this.setState({username: e.target.value });
+    this.setState({username: e.target.value});
   }
 
   handlePasswordChange(e) {
-    this.setState({password: e.target.value });
+    this.setState({password: e.target.value});
   }
 
   handleSubmit(event) {
@@ -38,7 +34,7 @@ export default class Login extends React.Component {
         />
 
         <input
-          type="text"
+          type="password"
           placeholder="password"
           onChange= {this.handlePasswordChange}
         />

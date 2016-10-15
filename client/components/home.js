@@ -6,8 +6,9 @@ export default class Home extends React.Component {
     return (
       <div>
         <h1>Welcome to not so lone shark.</h1>
-        <Link to="login">Login</Link>
-        <Link to="register">Register</Link>
+        <Link to="login">Login</Link> <br/>
+        <Link to="register">Register</Link> <br/>
+        <Link to="request">Request Money</Link>
       </div>
     );
   }
