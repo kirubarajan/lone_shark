@@ -26,7 +26,7 @@ Meteor.methods({
 
     if (decision == true) {
 
-      Requests.update({_id: request}, {accept: true, sender: sender});
+      Requests.update({_id: request}, {accept: true, sender: sender, total: 0});
 
     }
 
@@ -44,11 +44,9 @@ Meteor.methods({
     Requests.update({_id: request}, {open: false, time: date.getTime() - initialTime});
 
     var hours = (Requests.findOne(request).time) / 3600000;
-    var amount = Requests.findOne(request).amount;
+    var total = Requests.findOne(request).total;
 
-    var transactionScore = (336 / hours) * amount;
-
-    amount = amount * Math.pow(1.04, hours);
+    var transactionScore = (336 / hours) * total;
 
     // return money back
 
@@ -66,6 +64,8 @@ Meteor.methods({
     for (var i = 0; i < requests.length; i++) {
 
       requests[i].rank = requests[i].creditScore / requests[i].time;
+
+      var receiver = Profiles.findOne(requests[i].receiver);
 
     }
 

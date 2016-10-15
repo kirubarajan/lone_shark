@@ -24,3 +24,5 @@ accounts-password
 fourseven:scss
 react-meteor-data
 session
+email
+aldeed:scheduled-tasks
