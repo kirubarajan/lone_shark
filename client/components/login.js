@@ -22,8 +22,13 @@ export default class Login extends React.Component {
     console.log(this.state.username);
     console.log(this.state.password);
 
-    Meteor.loginWithPassword(this.state.username, this.state.password);
-    hashHistory.push('/loggedin')
+    if (this.state.username !== null && this.state.password !== null) {
+      Meteor.loginWithPassword(this.state.username, this.state.password);
+      hashHistory.push('/loggedin');
+    } else {
+      console.log('fired');
+      alert('Please enter your email and password.');
+    }
   }
 
   render() {

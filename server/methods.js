@@ -25,6 +25,7 @@ Meteor.methods({
   transfer: function(request, decision, sender) {
 
     // uses blockchain to transfer bitcoin of given request, or discard request
+    console.log('fired');
 
     var wallet = Profiles.findOne({user: sender}).wallet;
     var request = Requests.findOne(request);

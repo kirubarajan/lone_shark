@@ -27,6 +27,17 @@
         text-decoration: none;
       }
     }
+    @media (max-width: 615px) {
+      button {
+        margin-top: 1em;
+        &:first-child {
+          margin-right: 0;
+        }
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
 
@@ -46,16 +57,16 @@
     input {
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-      border-radius: 5px;
+      border-radius: 4px;
       border: 2px solid grey;
       box-sizing: border-box;
       display: block;
       font-size: 1em;
       margin-top: 1em;
       outline: 0;
-      padding: 1em;
+      padding: 0.7em;
       transition: all 0.3s ease;
-      width:100%;
+      width: 100%;
       &:focus {
         border-color: $red;
       }
@@ -68,6 +79,12 @@
 
     button {
       margin-top: 20px;
+    }
+
+    @media (max-width: 615px) {
+      button {
+        width: 100%;
+      }
     }
   }
 }
