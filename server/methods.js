@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { Email } from 'meteor/email';
 
 Meteor.methods({
 
   register: function(user, name) {
 
-    return Profiles.insert({user: Meteor.userId(), name: name, score: 0, wallet: 0});
+    return Profiles.insert({user: Meteor.userId(), name: name, score: 0, wallet: 1});
 
   },
 
@@ -37,6 +38,15 @@ Meteor.methods({
       var wallet = Profiles.findOne({user: request.receiver}).wallet;
 
       Profiles.update({user: request.receiver}, {wallet: wallet + request.amount});
+
+      var email = Meteor.users.findOne({_id: request.receiver}).email;
+
+      Email.send({
+        to: email,
+        from: "hello@notsoloneshark.loan",
+        subject: "Loan Compounded",
+        text: "You have been loaned " + requests.amount + " dollars. In one hour your loan will be compounded 4% and you will owe " + requests.amount * 1.004 + " dollars. In one day you will owe " + requests.amount * 1.1005483003 + " dollars. Pay back your loan quickly!",
+      });
 
     }
 
@@ -97,6 +107,6 @@ Meteor.methods({
 
     }
 
-  }
+  },
 
 });

@@ -12,9 +12,9 @@ var hourlyEmailer = new ScheduledTask(schedule, function () {
 
     var total = requests[i].total;
 
-    var difference = total * 0.04;
+    var difference = total * 0.004;
 
-    total = total * 1.04;
+    total = total * 1.004;
 
     Requests.update({_id: requests[i]._id}, {total: total});
 
