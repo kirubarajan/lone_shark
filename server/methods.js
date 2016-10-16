@@ -34,7 +34,7 @@ Meteor.methods({
 
     if (decision == true && wallet >= request.amount) {
 
-      Requests.update({_id: request}, {$set: {accept: true, sender: sender, total: 0}});
+      Requests.update(request, {$set: {accept: true}});
 
       Profiles.update({user: sender}, {$inc: {wallet: -request.amount}});
 
