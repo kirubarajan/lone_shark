@@ -32,11 +32,13 @@ Meteor.methods({
 
       Requests.update({_id: request}, {accept: true, sender: sender, total: 0});
 
+      Profiles.update({user: sender}, {wallet: wallet - request.amount});
+
+      var wallet = Profiles.findOne({user: request.receiver}).wallet;
+
+      Profiles.update({user: request.receiver}, {wallet: wallet + request.amount});
+
     }
-
-    // sends money
-
-
 
   },
 
