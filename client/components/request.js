@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ export default class Login extends React.Component {
     console.log(userId);
     console.log(this.state.message);
     Meteor.call('request', this.state.bitcoin, userId, this.state.message);
+    hashHistory.push('/marketplace');
   }
 
   render() {

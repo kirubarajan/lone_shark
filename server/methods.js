@@ -68,6 +68,8 @@ Meteor.methods({
 
     }
 
+    Meteor._sleepForMs(2000);
+
     if (filterByAmount == true) {
 
       requests.sort(function(a, b) {

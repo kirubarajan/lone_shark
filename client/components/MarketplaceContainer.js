@@ -5,11 +5,15 @@ import Tile from './marketplace/Tile.js'
 
 export default MarketplaceContainer = createContainer(() => {
   var TilesArray = Session.get('TilesArray');
-  if (TilesArray && TilesArray.length) {
+  if (Array.isArray(TilesArray)) {
     return {
       TilesArray: TilesArray.map(function(tile) {
-        return (<Tile name={tile.name} amount={title.amount} message={title.message}/>);
+        return (<Tile name={tile.name} amount={tile.amount} message={tile.message}/>);
       })
+    }
+  } else {
+    return {
+      TilesArray: [(<Tile name={'Loading...'} />)]
     }
   }
 }, Marketplace);
