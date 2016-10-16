@@ -1,5 +1,5 @@
-$primary-font: 'Montserrat', sans-serif;
-$secondary-font: 'Esteban', serif;
+$primary-font: 'Oswald', sans-serif;
+$secondary-font: 'Quattrocento', serif;
 
 html {
   font-family: $secondary-font;
@@ -11,10 +11,11 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  color: $red;
+  color: $white;
   font-family: $primary-font;
   font-size: 5.063em;
   font-weight: 700;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -32,4 +33,5 @@ h4 {
 
 p, a {
   font-family: $secondary-font;
+  font-size: 1.2em;
 }

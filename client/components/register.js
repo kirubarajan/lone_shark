@@ -23,7 +23,6 @@ export default class Register extends React.Component {
     this.setState({confirmedPassword: e.target.value})
   }
 
-
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.username);
@@ -41,6 +40,7 @@ export default class Register extends React.Component {
       Meteor.call('register', userId, this.state.username);
       hashHistory.push('/loggedin')
     } else {
+      alert('passwords do not match');
       console.log('passwords do not match');
     }
   }
@@ -63,13 +63,13 @@ export default class Register extends React.Component {
           />
 
           <input
-            type="text"
+            type="password"
             placeholder="password"
             onChange={this.handlePasswordChange}
           />
 
           <input
-            type="text"
+            type="password"
             placeholder="confirm password"
             onChange={this.handlePasswordConfirmedChange}
           />

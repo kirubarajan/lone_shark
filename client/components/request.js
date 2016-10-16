@@ -17,12 +17,10 @@ export default class Login extends React.Component {
     var cad = e.target.value;
     var bitcoinCurrency = cad / (1 / 0.0012);
 
-    console.log(bitcoinCurrency);
     this.setState({bitcoin: bitcoinCurrency});
   }
 
   handleMessageChange(e) {
-    console.log(e.target.value);
     this.setState({message: e.target.value});
   }
 
@@ -47,7 +45,7 @@ export default class Login extends React.Component {
             onChange= {this.handleLoanAmountChange}
           />
 
-          <div>Bitcoin: {this.state.bitcoin}</div>
+          <div><p>Bitcoin: {this.state.bitcoin}</p></div>
 
           <textarea
             type="text"

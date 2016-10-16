@@ -1,4 +1,4 @@
-.home {
+.home, .homeLoggedIn {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -7,11 +7,13 @@
   text-align: center;
 
   p {
+    color: $white;
     margin-top: 0.5em;
   }
   div {
     width: 40vw;
     button {
+      vertical-align: middle;
       margin-top: 2em;
       &:first-child {
         margin-right: 10px;
@@ -44,6 +46,7 @@
     input {
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
+      border-radius: 5px;
       border: 2px solid grey;
       box-sizing: border-box;
       display: block;
@@ -69,17 +72,46 @@
   }
 }
 
+.home {
+  background-image: url('https://images.unsplash.com/photo-1473357237784-6e0cb4e70a67?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=5417c159ef7e4ce71402199b04bb3473');
+  background-size: cover;
+}
+
+.login {
+  background-image: url('https://hd.unsplash.com/photo-1446104838475-bc6508184f08');
+  background-size: cover;
+}
+
+.register {
+  background-image: url('https://hd.unsplash.com/uploads/1413595244012e81f5c69/de0cc225');
+  background-size: cover;
+}
+
+.homeLoggedIn {
+  background-image: url('https://i.imgur.com/OFAiSXd.jpg');
+  background-size: cover;
+}
+
 .request {
+  background-image: url('https://hd.unsplash.com/photo-1462040700793-fcd2dbc0edf0');
+  background-size: cover;
   textarea {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: 2px solid grey;
     font-size: 1em;
-    height: 20vh;
+    height: 15vh;
     padding: 1em;
     width: 100%;
     &:focus {
+      border-color: $red;
       outline: 0;
     }
+  }
+  p {
+    bottom: 35px;
+    color: $white;
+    left: 280px;
+    position: relative;
   }
 }
