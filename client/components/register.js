@@ -13,7 +13,7 @@ export default class Register extends React.Component {
   }
 
   handleUsernameChange(e) {
-    this.setState({username: e.target.value});
+    this.setState({email: e.target.value});
   }
 
   handlePasswordChange(e) {
@@ -30,19 +30,18 @@ export default class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.username);
-    console.log(this.state.password);
-    console.log(this.state.confirmedPassword);
-
     if (this.passwordMatch(this.state.password, this.state.confirmedPassword)) {
       console.log('passwords match');
       Accounts.createUser({
-        username: this.state.username,
+        email: this.state.email,
         password: this.state.password
       });
 
       const userId = Meteor.userId();
+      console.log(userId);
+      console.log(this.state.name);
       Meteor.call('register', userId, this.state.name);
+      Session.set('wallet', 1);
       hashHistory.push('/loggedin')
     } else {
       alert('passwords do not match');

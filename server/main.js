@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
+import '../imports/api/profiles.js';
 
 var schedule = later.parse.recur().on(1).minute();
 var hourlyEmailer = new ScheduledTask(schedule, function () {

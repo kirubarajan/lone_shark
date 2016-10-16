@@ -9,7 +9,13 @@ export default class Tile extends React.Component {
   handleSubmit(_id) {
     event.preventDefault();
     console.log(_id);
+    console.log(Meteor.userId());
     Meteor.call('transfer', _id, true, Meteor.userId());
+    Meteor.call("getWallet", Meteor.userId(), function(error, result) {
+
+      Session.set('wallet', result);
+
+    });
     hashHistory.push('/transaction');
   }
 

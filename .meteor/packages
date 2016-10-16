@@ -26,3 +26,4 @@ react-meteor-data
 session
 email
 aldeed:scheduled-tasks
+accounts-ui

@@ -30,23 +30,25 @@ Meteor.methods({
     var wallet = Profiles.findOne({user: sender}).wallet;
     var request = Requests.findOne(request);
 
+    Requests.update({_id: request}, {$set: {sender: sender}});
+
     if (decision == true && wallet >= request.amount) {
 
-      Requests.update({_id: request}, {accept: true, sender: sender, total: 0});
+      Requests.update({_id: request}, {$set: {accept: true, sender: sender, total: 0}});
 
-      Profiles.update({user: sender}, {wallet: wallet - request.amount});
+      Profiles.update({user: sender}, {$inc: {wallet: -request.amount}});
 
       var wallet = Profiles.findOne({user: request.receiver}).wallet;
 
-      Profiles.update({user: request.receiver}, {wallet: wallet + request.amount});
+      Profiles.update({user: request.receiver}, {$inc: {wallet: request.amount}});
 
-      var email = Meteor.users.findOne({_id: request.receiver}).email;
+      var email = Meteor.users.findOne(request.receiver).email;
 
       Email.send({
         to: email,
         from: "hello@notsoloneshark.loan",
         subject: "Loan Compounded",
-        text: "You have been loaned " + requests.amount + " dollars. In one hour your loan will be compounded 4% and you will owe " + requests.amount * 1.004 + " dollars. In one day you will owe " + requests.amount * 1.1005483003 + " dollars. Pay back your loan quickly!",
+        text: "You have been loaned " + request.amount + " dollars. In one hour your loan will be compounded 4% and you will owe " + request.amount * 1.004 + " dollars. In one day you will owe " + request.amount * 1.1005483003 + " dollars. Pay back your loan quickly!",
       });
 
     }
@@ -58,7 +60,7 @@ Meteor.methods({
     var initialTime = Requests.findOne(request).time;
     var date = new Date();
 
-    Requests.update({_id: request}, {open: false, time: date.getTime() - initialTime});
+    Requests.update({_id: request}, {$set: {open: false, time: date.getTime() - initialTime}});
 
     var hours = (Requests.findOne(request).time) / 3600000;
     var total = Requests.findOne(request).total;
@@ -67,10 +69,10 @@ Meteor.methods({
 
     // return money back
 
-    Requests.update({_id: request}, {score: transactionScore});
+    Requests.update({_id: request}, {$set: {score: transactionScore}});
 
     var creditScore = Profiles.findOne({user: receiver}).score + transactionScore;
-    Profiles.update({user: receiver}, {score: creditScore});
+    Profiles.update({user: receiver}, {$set: {score: creditScore}});
 
   },
 
@@ -109,5 +111,11 @@ Meteor.methods({
     }
 
   },
+
+  getWallet: function(user) {
+
+    return Profiles.findOne({user: user}).wallet
+
+  }
 
 });
