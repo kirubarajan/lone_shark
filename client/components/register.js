@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handlePasswordConfirmedChange = this.handlePasswordConfirmedChange.bind(this);
@@ -17,6 +18,10 @@ export default class Register extends React.Component {
 
   handlePasswordChange(e) {
     this.setState({password: e.target.value});
+  }
+
+  handleNameChange(e) {
+    this.setState({name: e.target.value});
   }
 
   handlePasswordConfirmedChange(e) {
@@ -37,7 +42,7 @@ export default class Register extends React.Component {
       });
 
       const userId = Meteor.userId();
-      Meteor.call('register', userId, this.state.username);
+      Meteor.call('register', userId, this.state.name);
       hashHistory.push('/loggedin')
     } else {
       alert('passwords do not match');
@@ -56,6 +61,13 @@ export default class Register extends React.Component {
       <div className="register">
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
+
+          <input
+            type="text"
+            placeholder="name"
+            onChange={this.handleNameChange}
+          />
+
           <input
             type="text"
             placeholder="email"

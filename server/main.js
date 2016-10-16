@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
 
-var schedule = later.parse.recur().on(1).minute(); // on fifth minute of every hour, every day
+var schedule = later.parse.recur().on(1).minute();
 var hourlyEmailer = new ScheduledTask(schedule, function () {
 
   var requests = Requests.find({accepted: true, open: true});
@@ -18,13 +18,15 @@ var hourlyEmailer = new ScheduledTask(schedule, function () {
 
     Requests.update({_id: requests[i]._id}, {total: total});
 
-    // send email to receiver that his debt's been compounded
+    var email = Profiles.findOne({user: requests[i].receiver}).email;
+
+    // send notifcation to receiver that his debt's been compounded
 
     Email.send({
-      to: "simh@live.ca",
+      to: email,
       from: "hello@notsoloneshark.loan",
-      subject: "Example Email",
-      text: "The contents of our email in plain text.",
+      subject: "Loan Compounded",
+      text: "Your loan of " + requests[i].amount + " dollars was compounded 4%. Your outstanding balance is " + requests[i].total + ".",
     });
 
   }

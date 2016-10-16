@@ -15,7 +15,7 @@ export default class Marketplace extends React.Component {
   }
   render() {
     return (
-      <div class="marketplace">
+      <div className="marketplace">
         {this.props.TilesArray}
       </div>
     );

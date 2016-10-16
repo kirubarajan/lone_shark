@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+     "env": {
+       "ROOT_URL": "https://notsoloneshark.loan",
+       "MONGO_URL": "mongodb://admin:admin@ds059316.mlab.com:59316/loneshark"
+     }
+   }
+}

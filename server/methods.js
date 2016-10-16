@@ -5,7 +5,7 @@ Meteor.methods({
 
   register: function(user, name) {
 
-    return Profiles.insert({user: Meteor.userId(), name: name, score: 0});
+    return Profiles.insert({user: Meteor.userId(), name: name, score: 0, wallet: 0});
 
   },
 
@@ -15,7 +15,9 @@ Meteor.methods({
 
     var creditScore = Profiles.findOne({user: receiver}).score;
 
-    Requests.insert({creditScore: creditScore, message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null});
+    var name = Profiles.findOne({user: receiver}).name;
+
+    Requests.insert({creditScore: creditScore, message, message, receiver: receiver, amount: amount, accept: false, open: true, sender: null, time: date.getTime(), score: null, name: name});
 
   },
 
@@ -23,7 +25,10 @@ Meteor.methods({
 
     // uses blockchain to transfer bitcoin of given request, or discard request
 
-    if (decision == true) {
+    var wallet = Profiles.findOne({user: sender}).wallet;
+    var request = Requests.findOne(request);
+
+    if (decision == true && wallet >= request.amount) {
 
       Requests.update({_id: request}, {accept: true, sender: sender, total: 0});
 
@@ -31,7 +36,7 @@ Meteor.methods({
 
     // sends money
 
-    var request = Requests.findOne(request);
+
 
   },
 

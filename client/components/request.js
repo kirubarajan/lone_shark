@@ -1,7 +1,7 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 
-export default class Login extends React.Component {
+export default class Request extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,7 @@ export default class Login extends React.Component {
             onChange= {this.handleLoanAmountChange}
           />
 
-          <div><p>Bitcoin: {this.state.bitcoin}</p></div>
+          <div><p>{this.state.bitcoin} BTC</p></div>
 
           <textarea
             type="text"
