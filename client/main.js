@@ -10,6 +10,7 @@ import Login from './components/Login';
 import HomeLoggedIn from './components/HomeLoggedIn';
 import Request from './components/Request';
 import MarketplaceContainer from './components/MarketplaceContainer';
+import Transaction from './components/Transaction';
 
 Meteor.startup(() => {
   ReactDOM.render(
@@ -22,6 +23,7 @@ Meteor.startup(() => {
         <Route path='loggedin' component={HomeLoggedIn}></Route>
         <Route path='request' component={Request}></Route>
         <Route path='marketplace' component={MarketplaceContainer}></Route>
+        <Route path='transaction' component={Transaction}></Route>
       </Route>
     </Router>,
     document.querySelector('.app'));

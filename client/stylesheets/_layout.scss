@@ -93,3 +93,25 @@
     position: relative;
   }
 }
+
+.transaction {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  span {
+    font-size: 5rem;
+  }
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+
+  button {
+    bottom: 3em;
+    font-family: $secondary-font;
+    position: absolute;
+  }
+}

@@ -5,14 +5,17 @@ export default class Marketplace extends React.Component {
     super(props);
     this.getArrayFromServer = this.getArrayFromServer.bind(this);
   }
+  
   componentWillMount() {
     this.getArrayFromServer();
   }
+  
   getArrayFromServer() {
     Meteor.call('fetchRequests', true, function(error, result) {
       Session.set('TilesArray', result);
     });
   }
+  
   render() {
     return (
       <div className="marketplace">

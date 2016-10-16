@@ -22,4 +22,13 @@ button {
   float: left;
   margin-left: 20px;
   margin-top: 20px;
+
+  button {
+    height: 2em;
+    font-size: 0.8em;
+    &:hover {
+      background: $dark-red;
+      transform: translate(0, 0);
+    }
+  }
 }
